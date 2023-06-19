@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Vue JS</title>
+    <!-- Font Awesome -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+        integrity='sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=='
+        crossorigin='anonymous'>
+    <!-- Bootstrap-->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css'
+        integrity='sha512-EAgFb1TGFSRh1CCsDotrqJMqB2D+FLCOXAJTE16Ajphi73gQmfJS/LNl6AsjDqDht6Ls7Qr1KWsrJxyttEkxIA=='
+        crossorigin='anonymous'>
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- JS -->
+    <script defer src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="container" id="root">
+        <div class="row my-5" @mouseenter="stopAutoplay" @mouseleave="startAutoplay">
+            <!-- Gallery -->
+            <div id="carousel" class="col-10 col-md-12 mb-md-3">
+                <!-- Prev button -->
+                <div class="button d-flex align-items-center justify-content-start" id="prev" @click="goToPrev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <!-- Gallery Carousel -->
+                <div id="gallery">
+                    <img v-for="(img, i) in images" :src="img.image" :alt="img.text" :title="img.title"
+                        v-show="isCurrentIndex(i)">
+                </div>
+                <!-- Next Button -->
+                <div class="button d-flex align-items-center justify-content-end" id="next" @click="goToNext">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+            <!-- Thumbnails Carousel -->
+        <div id="thumbnails" class="col-2 col-md-12 d-flex flex-column flex-md-row">
+            <img v-for="(img, i) in images" :src="img.image" :alt="img.text" :title="img.title":class="{active : isCurrentIndex(i)}" @click="setCurrentIndex(i)">
+        </div>
+    </div>
+    </div>
+</body>
+</html>
